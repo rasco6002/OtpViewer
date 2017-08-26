@@ -14,9 +14,9 @@ public class SmsReader extends BroadcastReceiver {
 
     boolean isOtpMessege(String s) {
         s = s.toUpperCase();
-        if (s.contains("OTP") ||
-                s.contains("PIN") ||
-                s.contains("ONE TIME PASSWORD") ||
+        if (s.contains("OTP ") ||s.contains(" OTP") ||s.contains("OTP:") ||s.contains("OTP.") ||s.contains("OTP)") ||s.contains("OTP]") ||
+                s.contains("PIN ") ||s.contains(" PIN") ||s.contains("PIN:") ||s.contains("PIN.") ||s.contains("PIN)") ||s.contains("PIN]") ||
+                s.contains("ONE TIME PASSWORD") || s.contains("ONETIME PASSWORD")||
                 (s.contains("CODE") && !(s.contains("%") || s.contains("ONLINE"))))
             return true;
         return false;
@@ -58,13 +58,15 @@ public class SmsReader extends BroadcastReceiver {
                     String phoneNumber = NewMessage.getDisplayOriginatingAddress();
                     String message = NewMessage.getDisplayMessageBody();
                     if (isOtpMessege(message)) {
-                        String otp = "demo";
+                        String otp = "demoo";
                         otp = getOtp(message);
-                        Intent intent1 = new Intent(context, OtpViewerDisplayService.class);
-                        intent1.putExtra("Sender", phoneNumber);
-                        intent1.putExtra("Messege", message);
-                        intent1.putExtra("OTP", otp);
-                        context.startService(intent1);
+                        if(otp.length()>3) {
+                            Intent intent1 = new Intent(context, OtpViewerDisplayService.class);
+                            intent1.putExtra("Sender", phoneNumber);
+                            intent1.putExtra("Messege", message);
+                            intent1.putExtra("OTP", otp);
+                            context.startService(intent1);
+                        }
                     }
                 }
             }

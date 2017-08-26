@@ -13,6 +13,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="This App will read incoming sms which contains OTP and display on top of screen,
-so that you can easily use your otp to any host app." />
+        android:text="This App will read incoming SMS which contains OTP and display on top of screen,
+so that you can easily use your OTP to any host app. " />
 </RelativeLayout>
